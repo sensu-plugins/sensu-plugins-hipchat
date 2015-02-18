@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'sensu/plugins/hipchat/version'
-
-Gem::Specification.new do |spec|
-  spec.name          = "sensu-plugins-hipchat"
-  spec.version       = Sensu::Plugins::Hipchat::VERSION
-  spec.authors       = ["Matt Jones"]
-  spec.email         = ["mjones@yieldbot.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
-  spec.license       = "MIT"
-
-  spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
-
-  spec.add_development_dependency "bundler", "~> 1.7"
-  spec.add_development_dependency "rake", "~> 10.0"
-=======
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -55,24 +31,13 @@ Gem::Specification.new do |s|
   s.platform               = ruby
   s.required_ruby_version  = '>= 1.9.3'
 
-  
-  s.add_development_dependency 'codeclimate-test-reporter' 'XXX'
-  
+  s.add_development_dependency 'codeclimate-test-reporter'
   s.add_development_dependency 'rubocop' '~> 0.17.0'
-  
   s.add_development_dependency 'rspec' '~> 3.1'
-  
   s.add_development_dependency 'bundler' '~> 1.7'
-  
   s.add_development_dependency 'rake' '~> 10.0'
-  
-  s.add_development_dependency 'github-markup' 'XXX'
-  
-  s.add_development_dependency 'redcarpet' 'XXX'
-  
-  s.add_development_dependency 'yard' 'XXX'
-  
-  s.add_development_dependency 'pry' 'XXX'
-  
->>>>>>> initial commit
+  s.add_development_dependency 'github-markup'
+  s.add_development_dependency 'redcarpet'
+  s.add_development_dependency 'yard'
+  s.add_development_dependency 'pry'
 end

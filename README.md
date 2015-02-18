@@ -1,19 +1,28 @@
-[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-hipchat.svg?branch=master)][1]
-[![Gem Version](https://badge.fury.io/rb/sensu-plugins-hipchat.svg)][2]
-[![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat/badges/gpa.svg)][3]
-[![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat/badges/coverage.svg)][4]
-[![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-hipchat.svg)][5]
+## Sensu-Plugins-hipchat
+
+[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-hipchat.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-hipchat)
+[![Gem Version](https://badge.fury.io/rb/sensu-plugins-hipchat.svg)](http://badge.fury.io/rb/sensu-plugins-hipchat)
+[![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat)
+[![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat)
+[![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-hipchat.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-hipchat)
 
 ## Functionality
 
 ## Files
- *
- *
- *
- *
+ * bin/handler-hipchat
 
 ## Usage
 
+```
+{
+  "hipchat": {
+    "apikey": "1234abcdefg1234abcdefg",
+    "apiversion": "v1",
+    "room": "Ops",
+    "from": "Sensu"
+  }
+}
+```
 ## Installation
 
 Add the public key (if you haven’t already) as a trusted certificate
@@ -39,7 +48,7 @@ Using the Sensu **sensu_gem** LWRP
 ```
 sensu_gem 'sensu-plugins-hipchat' do
   options('--prerelease')
-  version '0.0.1.alpha.4'
+  version '0.0.1'
 end
 ```
 
@@ -47,14 +56,8 @@ Using the Chef **gem_package** resource
 ```
 gem_package 'sensu-plugins-hipchat' do
   options('--prerelease')
-  version '0.0.1.alpha.4'
+  version '0.0.1'
 end
 ```
 
 ## Notes
-
-[1]:[https://travis-ci.org/sensu-plugins/sensu-plugins-hipchat]
-[2]:[http://badge.fury.io/rb/sensu-plugins-hipchat]
-[3]:[https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat]
-[4]:[https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat]
-[5]:[https://gemnasium.com/sensu-plugins/sensu-plugins-hipchat]
