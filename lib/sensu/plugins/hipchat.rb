@@ -1,4 +1,4 @@
-require "sensu/plugins/hipchat/version"
+require 'sensu/plugins/hipchat/version'
 
 module Sensu
   module Plugins
