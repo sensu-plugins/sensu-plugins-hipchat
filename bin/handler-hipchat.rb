@@ -23,7 +23,6 @@
 #       by defining the "hipchat_room" attribute in the client config file. This will override the default hipchat room where the
 #       alerts are being routed to for that particular client.
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-handler'
 require 'hipchat'
 require 'timeout'
