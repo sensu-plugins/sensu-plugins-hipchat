@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat)
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-hipchat.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-hipchat)
-[ ![Codeship Status for sensu-plugins/sensu-plugins-hipchat](https://codeship.com/projects/6a226580-e891-0132-adeb-62885e5c211b/status?branch=master)](https://codeship.com/projects/82832)
+[![Codeship Status for sensu-plugins/sensu-plugins-hipchat](https://codeship.com/projects/6a226580-e891-0132-adeb-62885e5c211b/status?branch=master)](https://codeship.com/projects/82832)
 
 ## Functionality
 
