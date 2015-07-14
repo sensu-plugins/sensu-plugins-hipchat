@@ -1,6 +1,6 @@
 ## Sensu-Plugins-hipchat
 
-[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-hipchat.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-hipchat)
+[ ![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-hipchat.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-hipchat)
 [![Gem Version](https://badge.fury.io/rb/sensu-plugins-hipchat.svg)](http://badge.fury.io/rb/sensu-plugins-hipchat)
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-hipchat)
