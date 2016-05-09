@@ -33,13 +33,14 @@ class HipChatNotif < Sensu::Handler
          short: '-j JsonConfig',
          long: '--json_config JsonConfig',
          required: false
+         default: 'hipchat'
 
   def event_name
     @event['client']['name'] + '/' + @event['check']['name']
   end
 
   def handle
-    json_config = config[:json_config] || 'hipchat'
+    json_config = config[:json_config]
     server_url = settings[json_config]['server_url'] || 'https://api.hipchat.com'
     apiversion = settings[json_config]['apiversion'] || 'v1'
     proxy_url = settings[json_config]['proxy_url']
