@@ -9,17 +9,16 @@
 #      @event['action'] - Property to figure out the event type i.e. whether it is create or resolve.
 #      @event['check'] - Map of attributes from the check config which is calling this handler
 #      @event['client'] - Map of attributes from the client config for the clients from which this event is generated.
-#   option: json_config - By default, assumes the hipchat config parameters are in a file called "hipchat.json" with
-#                         "hipchat" being the top-level key of the json. This command line option allows to specify
-#                         a custom file instead of "hipchat.json" to fetch the hipchat config from.
+#   option: json_config - By default, assumes the hipchat config parameters are in the “hipchat” top-level json key.
+#                         This command line option allows to specify a custom json key.
 #
 # Output:
 #    Green coloured notification on the Hipchat room if a resolve event is seen.
 #    Yellow coloured notification used to notify warning if a create event is seen with a status of 1
 #    Red coloured notification used to notify critical if a create event is seen with a status other than 1
 #
-# Note: The default hipchat config is fetched from the predefined json config file which is "hipchat.json" or any other
-#       file defiend using the "json_config" command line option. The hipchat room could also be configured on a per client basis
+# Note: The handler config is fetched and merged from all json config files. The “hipchat” json key is used by default which can
+#       be overridden with the "json_config" command line option. The hipchat room could also be configured on a per client basis
 #       by defining the "hipchat_room" attribute in the client config file. This will override the default hipchat room where the
 #       alerts are being routed to for that particular client.
 
@@ -29,9 +28,9 @@ require 'timeout'
 
 class HipChatNotif < Sensu::Handler
   option :json_config,
-         description: 'Config Name',
-         short: '-j JsonConfig',
-         long: '--json_config JsonConfig',
+         description: 'JSON config key name',
+         short: '-j JsonKeyName',
+         long: '--json_config JsonKeyName',
          required: false
          default: 'hipchat'
 
