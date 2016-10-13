@@ -67,7 +67,7 @@ class HipChatNotif < Sensu::Handler
 
     if add_msg
       begin
-        message << eval(add_msg)
+        message << eval(add_msg) # rubocop:disable Lint/Eval
       rescue
         puts "Can't evaluate: add_msg = #{add_msg}"
       end
