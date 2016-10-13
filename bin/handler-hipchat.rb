@@ -46,6 +46,7 @@ class HipChatNotif < Sensu::Handler
     hipchatmsg = HipChat::Client.new(settings[json_config]['apikey'], api_version: apiversion, http_proxy: proxy_url, server_url: server_url)
     room = @event['client']['hipchat_room'] || @event['check']['hipchat_room'] || settings[json_config]['room']
     from = settings[json_config]['from'] || 'Sensu'
+    add_msg = settings[json_config]['add_msg']
 
     message = @event['check']['notification'] || @event['check']['output']
 
@@ -61,6 +62,14 @@ class HipChatNotif < Sensu::Handler
                    end
       rescue
         message << "  Playbook:  #{@event['check']['playbook']}"
+      end
+    end
+
+    if add_msg
+      begin
+        message << eval(add_msg)
+      rescue
+        puts "Can't evaluate: add_msg = #{add_msg}"
       end
     end
 

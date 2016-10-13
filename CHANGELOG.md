@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Changed
+- added config option to extend message with evaluated ruby code
 
 ## [0.0.4] - 2016-08-10
 ### Changed

@@ -19,7 +19,8 @@
     "apikey": "1234abcdefg1234abcdefg",
     "apiversion": "v1",
     "room": "Ops",
-    "from": "Sensu"
+    "from": "Sensu",
+    "add_msg": "\"<br>command: #{@event['check']['command']}<br>occurrences: #{@event['occurrences']}\""
   }
 }
 ```
