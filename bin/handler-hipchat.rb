@@ -25,6 +25,7 @@
 require 'sensu-handler'
 require 'hipchat'
 require 'timeout'
+require 'erubis'
 
 class HipChatNotif < Sensu::Handler
   option :json_config,
@@ -46,30 +47,47 @@ class HipChatNotif < Sensu::Handler
     hipchatmsg = HipChat::Client.new(settings[json_config]['apikey'], api_version: apiversion, http_proxy: proxy_url, server_url: server_url)
     room = @event['client']['hipchat_room'] || @event['check']['hipchat_room'] || settings[json_config]['room']
     from = settings[json_config]['from'] || 'Sensu'
-
-    message = @event['check']['notification'] || @event['check']['output']
+    message_template = settings[json_config]['message_template']
 
     # If the playbook attribute exists and is a URL, "[<a href='url'>playbook</a>]" will be output.
     # To control the link name, set the playbook value to the HTML output you would like.
+    playbook = ''
     if @event['check']['playbook']
       begin
         uri = URI.parse(@event['check']['playbook'])
-        message << if %w( http https ).include?(uri.scheme)
-                     "  [<a href='#{@event['check']['playbook']}'>Playbook</a>]"
-                   else
-                     "  Playbook:  #{@event['check']['playbook']}"
-                   end
+        playbook << if %w( http https ).include?(uri.scheme)
+                      "  [<a href='#{@event['check']['playbook']}'>Playbook</a>]"
+                    else
+                      "  Playbook:  #{@event['check']['playbook']}"
+                    end
       rescue
-        message << "  Playbook:  #{@event['check']['playbook']}"
+        playbook << "  Playbook:  #{@event['check']['playbook']}"
       end
     end
+
+    if message_template && File.readable?(message_template)
+      template = File.read(message_template)
+    else
+      template = '''<%=
+      [
+        @event["action"].eql?("resolve") ? "RESOLVED" : "ALERT",
+        " - [#{event_name}] - ",
+        @event["check"]["notification"] || @event["check"]["output"],
+        playbook,
+        "."
+      ].join
+      %>
+      '''
+    end
+    eruby = Erubis::Eruby.new(template)
+    message = eruby.result(binding)
 
     begin
       timeout(3) do
         if @event['action'].eql?('resolve')
-          hipchatmsg[room].send(from, "RESOLVED - [#{event_name}] - #{message}.", color: 'green')
+          hipchatmsg[room].send(from, message, color: 'green')
         else
-          hipchatmsg[room].send(from, "ALERT - [#{event_name}] - #{message}.", color: @event['check']['status'] == 1 ? 'yellow' : 'red', notify: true)
+          hipchatmsg[room].send(from, message, color: @event['check']['status'] == 1 ? 'yellow' : 'red', notify: true)
         end
       end
     rescue Timeout::Error

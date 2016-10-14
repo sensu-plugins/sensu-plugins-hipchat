@@ -19,7 +19,8 @@
     "apikey": "1234abcdefg1234abcdefg",
     "apiversion": "v1",
     "room": "Ops",
-    "from": "Sensu"
+    "from": "Sensu",
+    "message_template": "optional message template erb file path - /some/path/to/template.erb"
   }
 }
 ```
@@ -28,3 +29,19 @@
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
 
 ## Notes
+
+### message_template example
+
+```
+<%=
+[
+  @event["action"].eql?("resolve") ? "RESOLVED" : "ALERT",
+  " - [#{event_name}]<br>",
+  "command: #{@event['check']['command']}<br>",
+  "occurrences: #{@event['occurrences']}<br>",
+  @event["check"]["notification"] || @event["check"]["output"],
+  "<br>",
+  playbook,
+].join
+%>
+```
