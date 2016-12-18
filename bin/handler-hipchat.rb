@@ -48,6 +48,7 @@ class HipChatNotif < Sensu::Handler
     room = @event['client']['hipchat_room'] || @event['check']['hipchat_room'] || settings[json_config]['room']
     from = settings[json_config]['from'] || 'Sensu'
     message_template = settings[json_config]['message_template']
+    message_format = settings[json_config]['message_format'] || 'html'
 
     # If the playbook attribute exists and is a URL, "[<a href='url'>playbook</a>]" will be output.
     # To control the link name, set the playbook value to the HTML output you would like.
@@ -85,9 +86,9 @@ class HipChatNotif < Sensu::Handler
     begin
       timeout(3) do
         if @event['action'].eql?('resolve')
-          hipchatmsg[room].send(from, message, color: 'green')
+          hipchatmsg[room].send(from, message, color: 'green', message_format: message_format)
         else
-          hipchatmsg[room].send(from, message, color: @event['check']['status'] == 1 ? 'yellow' : 'red', notify: true)
+          hipchatmsg[room].send(from, message, color: @event['check']['status'] == 1 ? 'yellow' : 'red', notify: true, message_format: message_format)
         end
       end
     rescue Timeout::Error

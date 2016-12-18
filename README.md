@@ -20,7 +20,8 @@
     "apiversion": "v1",
     "room": "Ops",
     "from": "Sensu",
-    "message_template": "optional message template erb file path - /some/path/to/template.erb"
+    "message_template": "optional message template erb file path - /some/path/to/template.erb",
+    "message_format": "html"
   }
 }
 ```
