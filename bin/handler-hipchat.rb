@@ -77,8 +77,7 @@ class HipChatNotif < Sensu::Handler
         playbook,
         "."
       ].join
-      %>
-      '''
+      %>'''
     end
     eruby = Erubis::Eruby.new(template)
     message = eruby.result(binding)
