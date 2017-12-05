@@ -84,7 +84,7 @@ class HipChatNotif < Sensu::Handler
     message = eruby.result(binding)
 
     begin
-      timeout(3) do
+      Timeout.timeout(3) do
         if @event['action'].eql?('resolve')
           hipchatmsg[room].send(from, message, color: 'green', message_format: message_format)
         else
