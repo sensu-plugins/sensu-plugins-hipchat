@@ -46,3 +46,24 @@
 ].join
 %>
 ```
+
+### How to test?
+
+1. Write a configuration file as explained in the *Usage* section
+1. Set the environment variable `SENSU_CONFIG_FILES` to the location of this file
+1. Pipe a sample check result into the handler itself:
+```
+cat <<EOF | bundle exec bin/handler-hipchat.rb
+{
+  "client": {
+    "name": "client"
+  },
+  "check": {
+    "status": 1,
+    "name": "name",
+    "source": "source",
+    "output": "Hello, warning"
+  }
+}
+EOF
+```
