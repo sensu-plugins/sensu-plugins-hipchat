@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+- support list of hipchat rooms, so notifications are sent to multiple rooms
 
 ## [3.0.0] - 2017-12-07
 ### Breaking Changes
