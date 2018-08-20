@@ -98,7 +98,7 @@ class HipChatNotif < Sensu::Handler
         end
       end
     rescue Timeout::Error
-      puts "hipchat -- timed out while attempting to message #{rooms.join(", ")}"
+      puts "hipchat -- timed out while attempting to message #{rooms.join(', ')}"
     end
   end
 end
