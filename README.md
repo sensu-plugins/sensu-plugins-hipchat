@@ -62,7 +62,8 @@ cat <<EOF | bundle exec bin/handler-hipchat.rb
     "status": 1,
     "name": "name",
     "source": "source",
-    "output": "Hello, warning"
+    "output": "Hello, warning",
+    "hipchat_room": ["general","important"]
   }
 }
 EOF

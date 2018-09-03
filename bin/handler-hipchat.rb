@@ -45,7 +45,7 @@ class HipChatNotif < Sensu::Handler
     apiversion = settings[json_config]['apiversion'] || 'v1'
     proxy_url = settings[json_config]['proxy_url']
     hipchatmsg = HipChat::Client.new(settings[json_config]['apikey'], api_version: apiversion, http_proxy: proxy_url, server_url: server_url)
-    room = @event['client']['hipchat_room'] || @event['check']['hipchat_room'] || settings[json_config]['room']
+    rooms = @event['client']['hipchat_room'] || @event['check']['hipchat_room'] || settings[json_config]['room']
     from = settings[json_config]['from'] || 'Sensu'
     message_template = settings[json_config]['message_template']
     message_format = settings[json_config]['message_format'] || 'html'
@@ -84,14 +84,21 @@ class HipChatNotif < Sensu::Handler
 
     begin
       Timeout.timeout(3) do
+        unless rooms.is_a?(Array)
+          rooms = [rooms]
+        end
         if @event['action'].eql?('resolve')
-          hipchatmsg[room].send(from, message, color: 'green', message_format: message_format)
+          rooms.each do |room|
+            hipchatmsg[room].send(from, message, color: 'green', message_format: message_format)
+          end
         else
-          hipchatmsg[room].send(from, message, color: @event['check']['status'] == 1 ? 'yellow' : 'red', notify: true, message_format: message_format)
+          rooms.each do |room|
+            hipchatmsg[room].send(from, message, color: @event['check']['status'] == 1 ? 'yellow' : 'red', notify: true, message_format: message_format)
+          end
         end
       end
     rescue Timeout::Error
-      puts "hipchat -- timed out while attempting to message #{room}"
+      puts "hipchat -- timed out while attempting to message #{rooms.join(', ')}"
     end
   end
 end
