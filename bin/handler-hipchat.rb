@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 # Sensu Handler: hipchat
 #
@@ -52,33 +54,33 @@ class HipChatNotif < Sensu::Handler
 
     # If the playbook attribute exists and is a URL, "[<a href='url'>playbook</a>]" will be output.
     # To control the link name, set the playbook value to the HTML output you would like.
-    playbook = ''
+    playbook = +'' # unary operator for unfrozen string literal
     if @event['check']['playbook']
       begin
         uri = URI.parse(@event['check']['playbook'])
-        playbook << if %w( http https ).include?(uri.scheme)
+        playbook << if %w[http https].include?(uri.scheme)
                       "  [<a href='#{@event['check']['playbook']}'>Playbook</a>]"
                     else
                       "  Playbook:  #{@event['check']['playbook']}"
                     end
-      rescue
+      rescue StandardError
         playbook << "  Playbook:  #{@event['check']['playbook']}"
       end
     end
 
-    if message_template && File.readable?(message_template)
-      template = File.read(message_template)
-    else
-      template = '''<%=
-      [
-        @event["action"].eql?("resolve") ? "RESOLVED" : "ALERT",
-        " - [#{event_name}] - ",
-        @event["check"]["notification"] || @event["check"]["output"],
-        playbook,
-        "."
-      ].join
-      %>'''
-    end
+    template = if message_template && File.readable?(message_template)
+                 File.read(message_template)
+               else
+                 '''<%=
+                 [
+                   @event["action"].eql?("resolve") ? "RESOLVED" : "ALERT",
+                   " - [#{event_name}] - ",
+                   @event["check"]["notification"] || @event["check"]["output"],
+                   playbook,
+                   "."
+                 ].join
+                 %>'''
+               end
     eruby = Erubis::Eruby.new(template)
     message = eruby.result(binding)
 

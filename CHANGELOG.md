@@ -1,9 +1,21 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
+This CHANGELOG follows the format laid out [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+
+### Security
+- updated `yard` dependency to `~> 0.9.11` per: https://nvd.nist.gov/vuln/detail/CVE-2017-17042 which closes attacks against a yard server loading arbitrary files (@majormoses)
+- updated rubocop dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418 (@majormoses)
+
+### Breaking Changes
+- removed ruby support for `< 2.3` (@majormoses)
+
+### Changed
+- appeased the cops (@majormoses)
+- bumped min `sensu-plugin` to the latest version of 2.x (@majormoses)
+- update changelog guidelines location (@majormoses)
 
 ## [3.1.0] - 2018-09-03
 ### Added
