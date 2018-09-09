@@ -5,6 +5,7 @@ This CHANGELOG follows the format laid out [here](https://github.com/sensu-plugi
 
 ## [Unreleased]
 
+## [4.0.0] - 2018-09-09
 ### Security
 - updated `yard` dependency to `~> 0.9.11` per: https://nvd.nist.gov/vuln/detail/CVE-2017-17042 which closes attacks against a yard server loading arbitrary files (@majormoses)
 - updated rubocop dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418 (@majormoses)
@@ -69,7 +70,8 @@ This CHANGELOG follows the format laid out [here](https://github.com/sensu-plugi
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-hipchat/compare/3.1.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-hipchat/compare/4.0.0...HEAD
+[4.0.0]: https://github.com/sensu-plugins/sensu-plugins-hipchat/compare/3.1.0...4.0.0
 [3.1.0]: https://github.com/sensu-plugins/sensu-plugins-hipchat/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/sensu-plugins/sensu-plugins-hipchat/compare/2.1.0...3.0.0
 [2.1.0]: https://github.com/sensu-plugins/sensu-plugins-hipchat/compare/2.0.0...2.1.0
