@@ -30,7 +30,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.version                = SensuPluginsHipchat::Version::VER_STRING
 
   s.add_runtime_dependency 'erubis',       '2.7.0'
-  s.add_runtime_dependency 'hipchat',      '1.5.1'
+  s.add_runtime_dependency 'hipchat',      '= 1.6.0'
   s.add_runtime_dependency 'sensu-plugin', '~> 2.5'
 
   s.add_development_dependency 'bundler',                   '~> 1.7'
