@@ -31,7 +31,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
 
   s.add_runtime_dependency 'erubis',       '2.7.0'
   s.add_runtime_dependency 'hipchat',      '1.5.1'
-  s.add_runtime_dependency 'sensu-plugin', '~> 2.5'
+  s.add_runtime_dependency 'sensu-plugin', '>= 2.5', '< 4.0'
 
   s.add_development_dependency 'bundler',                   '~> 1.7'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
